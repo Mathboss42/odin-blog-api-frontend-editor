@@ -2,9 +2,9 @@
 import { onMounted, ref } from 'vue';
 import { useEditorStore } from '../stores/editor';
 import axios from 'axios';
-import { useRoute } from 'vue-router';
+import { useRouter } from 'vue-router';
 
-const route = useRoute();
+const router = useRouter();
 
 const store = useEditorStore();
 
@@ -174,6 +174,10 @@ async function handlePostUpdate(e) {
                 'Authorization': `Bearer ${localStorage.getItem('token')}` 
             }
         });
+
+        router.push('/');
+
+    
     } catch (err) {
         console.log(err);
     }
@@ -197,7 +201,10 @@ async function handlePostUpdate(e) {
             </div>
             <div>
                 <label for="status">Published</label>
-                <input type="checkbox" name="status" id="status" :checked="post.status === 'published'">
+                <select name="status" id="status">
+                    <option value="published" :selected="post.status === 'published'">Published</option>
+                    <option value="archived" :selected="post.status === 'archived'">Archived</option>
+                </select>
             </div>
             <button>Update Post</button>
         </form>
