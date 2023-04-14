@@ -40,6 +40,7 @@ onMounted(async () => {
 <template>
     <main>
         <h1>Blog Editor - Admin Interface</h1>
+        <RouterLink to="/post/new">New Post</RouterLink>
         <ul>
             <li v-for="post in posts" :key="post._id">
                 <RouterLink :to="{ name: 'post', params: { id: post._id }}"><h2>{{ post.title }}</h2></RouterLink>

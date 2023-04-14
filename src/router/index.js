@@ -4,6 +4,7 @@ import axios from 'axios';
 import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import PostView from '../views/PostView.vue';
+import NewPostView from '../views/NewPostView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,12 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+    },
+    {
+      path: '/post/new',
+      name: 'postNew',
+      component: NewPostView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/post/:id',
